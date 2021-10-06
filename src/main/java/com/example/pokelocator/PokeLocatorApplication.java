@@ -10,4 +10,5 @@ public class PokeLocatorApplication {
         SpringApplication.run(PokeLocatorApplication.class, args);
     }
 
+
 }
