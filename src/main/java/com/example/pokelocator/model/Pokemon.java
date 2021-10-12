@@ -1,10 +1,8 @@
 package com.example.pokelocator.model;
 
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "UltraSunAndMoon")
-public class Pokemon {
+public abstract class Pokemon {
 
     @Id
     private String id;
@@ -21,9 +19,7 @@ public class Pokemon {
         this.imageUrl = imageUrl;
     }
 
-    public int getPokeId() {
-        return pokeId;
-    }
+    public int getPokeId() { return pokeId; }
 
     public String getPokeName() {
         return pokeName;

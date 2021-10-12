@@ -1,28 +1,27 @@
 package com.example.pokelocator.service;
 
-import com.example.pokelocator.model.Pokemon;
-import com.example.pokelocator.model.PokemonListWrapper;
-import com.example.pokelocator.repository.PokemonRepository;
+import com.example.pokelocator.model.UltraSunMoon;
+import com.example.pokelocator.repository.UltraSunAndMoonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import java.util.List;
 
 @Service
 public class PokemonService {
 
     @Autowired
-    PokemonRepository pokemonRepository;
+    UltraSunAndMoonRepository ultraSunAndMoonRepository;
 
-    public Pokemon getPokemonByPokeId(int pokeId) {
-        return pokemonRepository.findByPokeId(pokeId);
+    public UltraSunMoon getPokemonByPokeId(int pokeId) {
+        return ultraSunAndMoonRepository.findByPokeId(pokeId);
     }
 
-    public Pokemon getPokemonByPokeName(String pokeName) {
-        return pokemonRepository.findByPokeName(pokeName);
+    public UltraSunMoon getPokemonByPokeName(String pokeName) {
+        return ultraSunAndMoonRepository.findByPokeName(pokeName);
     }
 
-    public PokemonListWrapper getAllSunAndMoonPokemon() {
-        PokemonListWrapper pokemonListWrapper = new PokemonListWrapper();
-        pokemonListWrapper.setAllPokemonList(pokemonRepository.findAll());
-        return pokemonListWrapper;
+    public List<UltraSunMoon> getAllSunAndMoonPokemon() {
+        List<UltraSunMoon> ultraSunMoonList = ultraSunAndMoonRepository.findAll();
+        return ultraSunMoonList;
     }
 }

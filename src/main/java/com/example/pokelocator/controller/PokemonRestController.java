@@ -1,31 +1,29 @@
 package com.example.pokelocator.controller;
 
-import com.example.pokelocator.model.Pokemon;
-import com.example.pokelocator.model.PokemonListWrapper;
+import com.example.pokelocator.model.UltraSunMoon;
 import com.example.pokelocator.service.PokemonService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import java.util.List;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/pokemon")
+@CrossOrigin
 public class PokemonRestController {
 
     @Autowired
     PokemonService pokemonService;
 
-    @GetMapping("/pokemon-list")
-    public PokemonListWrapper getAllSunAndMoonPokemon() {
+    @GetMapping("/ultra-sun-and-moon/list")
+    public List<UltraSunMoon> getAllSunAndMoonPokemon() {
         return pokemonService.getAllSunAndMoonPokemon();
     }
 
-    @GetMapping("/pokemon-id/{id}")
-    public Pokemon getPokemon(@PathVariable int id) { return pokemonService.getPokemonByPokeId(id); }
+    @GetMapping(value = "/ultra-sun-and-moon", params = "pokeId")
+    public UltraSunMoon getPokemonById(@RequestParam("pokeId") int id) { return pokemonService.getPokemonByPokeId(id); }
 
-    @GetMapping("/pokemon-name/{name}")
-    public Pokemon getPokemonByName(@PathVariable String name) {
+    @GetMapping(value = "/ultra-sun-and-moon", params = "pokeName")
+    public UltraSunMoon getPokemonByName(@RequestParam("pokeName") String name) {
         return pokemonService.getPokemonByPokeName(name);
     }
 
