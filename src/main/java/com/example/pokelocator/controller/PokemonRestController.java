@@ -3,8 +3,7 @@ package com.example.pokelocator.controller;
 import com.example.pokelocator.model.LetsGo;
 import com.example.pokelocator.model.UltraSunMoon;
 import com.example.pokelocator.service.LetsGoService;
-import com.example.pokelocator.service.PokemonService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.pokelocator.service.UltraSunAndMoonService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
@@ -14,22 +13,26 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin
 public class PokemonRestController {
 
-    @Autowired
-    PokemonService pokemonService;
-    @Autowired
-    LetsGoService letsGoService;
+    private final UltraSunAndMoonService ultraSunAndMoonService;
+
+    private final LetsGoService letsGoService;
+
+    public PokemonRestController(UltraSunAndMoonService ultraSunAndMoonService, LetsGoService letsGoService) {
+        this.ultraSunAndMoonService = ultraSunAndMoonService;
+        this.letsGoService = letsGoService;
+    }
 
     @GetMapping(value = "/ultra-sun-and-moon", params = "pokeId")
-    public UltraSunMoon getPokemonById(@RequestParam("pokeId") int id) { return pokemonService.getPokemonByPokeId(id); }
+    public UltraSunMoon getPokemonById(@RequestParam("pokeId") int id) { return ultraSunAndMoonService.getPokemonByPokeId(id); }
 
     @GetMapping(value = "/ultra-sun-and-moon", params = "pokeName")
     public UltraSunMoon getPokemonByName(@RequestParam("pokeName") String name) {
-        return pokemonService.getPokemonByPokeName(name);
+        return ultraSunAndMoonService.getPokemonByPokeName(name);
     }
 
     @GetMapping("/ultra-sun-and-moon/list")
     public Page<UltraSunMoon> getSunAndMoonPokemon(Pageable pageable) {
-        return pokemonService.getPokemonByPage(pageable);
+        return ultraSunAndMoonService.getPokemonByPage(pageable);
     }
 
     @GetMapping(value = "/lets-go", params = "pokeId")
