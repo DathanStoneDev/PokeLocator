@@ -23,10 +23,11 @@ public class PokemonRestController {
     }
 
     @GetMapping(value = "/ultra-sun-and-moon", params = "pokeId")
-    public UltraSunMoon getPokemonById(@RequestParam("pokeId") int id) { return ultraSunAndMoonService.getPokemonByPokeId(id); }
+    public UltraSunMoon getSunAndMoonPokemonById(@RequestParam("pokeId") int id) { return ultraSunAndMoonService.getPokemonByPokeId(id); }
 
     @GetMapping(value = "/ultra-sun-and-moon", params = "pokeName")
-    public UltraSunMoon getPokemonByName(@RequestParam("pokeName") String name) {
+    public UltraSunMoon getSunAndMoonPokemonByName(@RequestParam("pokeName") String name) {
+        name = name.substring(0,1).toUpperCase() + name.substring(1).toLowerCase();
         return ultraSunAndMoonService.getPokemonByPokeName(name);
     }
 
