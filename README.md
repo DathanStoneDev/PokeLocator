@@ -6,4 +6,4 @@ The purpose of the application is to provide the locations of each pokemon and h
 - Language: Java 11
 - Framework: Springboot(v.2.5.5)
 - Database MongoDB(v.5.0)
-- Testing: Junit5, Mokito
+- Testing: Junit5, Mockito
