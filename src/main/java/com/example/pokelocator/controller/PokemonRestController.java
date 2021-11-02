@@ -37,10 +37,13 @@ public class PokemonRestController {
     }
 
     @GetMapping(value = "/lets-go", params = "pokeId")
-    public LetsGo getLetsGoPokemonById(@RequestParam("pokeId") int id) { return letsGoService.getPokemonByPokeId(id); }
+    public LetsGo getLetsGoPokemonById(@RequestParam("pokeId") int id) {
+        return letsGoService.getPokemonByPokeId(id);
+    }
 
     @GetMapping(value = "/lets-go", params = "pokeName")
     public LetsGo getLetsGoPokemonByName(@RequestParam("pokeName") String name) {
+        name = name.substring(0,1).toUpperCase() + name.substring(1).toLowerCase();
         return letsGoService.getPokemonByPokeName(name);
     }
 
